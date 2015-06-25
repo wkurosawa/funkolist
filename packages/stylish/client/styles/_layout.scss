@@ -4,3 +4,7 @@
   @extend .navbar-default;
   background-color: $nav_background;
 }
+
+.alert {
+  animation: fadeOut 2850ms ease-in 0s 1 forwards;
+}

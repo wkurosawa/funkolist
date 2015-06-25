@@ -8,16 +8,34 @@ Template.funkoNew.events({
       name: $(e.target).find('[name=name]').val(),
     };
 
+    var errors = validateFunko(funko);
+    if (errors.collection || errors.name || errors.number)
+      return Session.set('funkoNewErrors', errors);
+
+
     Meteor.call('funkoInsert', funko, function(error, result) {
       // display the error to the user and abort
       if (error)
-        return alert(error.reason);
+        return throwError(error.reason);
 
       // show this result but route anyway
       if (result.funkoExists)
-        alert('This funko has already been created');
+        throwError('This funko has already been created');
 
       Router.go('funkoPage', {_id: result._id});
     });
+  }
+});
+
+Template.funkoNew.onCreated(function() {
+  Session.set('funkoNewErrors', {});
+});
+
+Template.funkoNew.helpers({
+  errorMessage: function(field) {
+    return Session.get('funkoNewErrors')[field];
+  },
+  errorClass: function (field) {
+    return !!Session.get('funkoNewErrors')[field] ? 'has-error' : '';
   }
 });

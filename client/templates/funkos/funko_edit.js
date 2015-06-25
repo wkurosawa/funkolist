@@ -1,3 +1,15 @@
+Template.funkoEdit.onCreated(function() {
+  Session.set('funkoEditErrors', {});
+});
+Template.funkoEdit.helpers({
+  errorMessage: function(field) {
+    return Session.get('funkoEditErrors')[field];
+  },
+  errorClass: function (field) {
+    return !!Session.get('funkoEditErrors')[field] ? 'has-error' : '';
+  }
+});
+
 Template.funkoEdit.events({
   'submit form': function(e) {
     e.preventDefault();
@@ -10,10 +22,14 @@ Template.funkoEdit.events({
       name: $(e.target).find('[name=name]').val()
     }
 
+    var errors = validateFunko(funkoProperties);
+    if (errors.collection || errors.name || errors.number)
+      return Session.set('funkoEditErrors', errors);
+
     Funkos.update(currentFunkoId, {$set: funkoProperties}, function(error) {
       if (error) {
         // display the error to the user
-        alert(error.reason);
+        throwError(error.reason);
       } else {
         Router.go('funkoPage', {_id: currentFunkoId});
       }
