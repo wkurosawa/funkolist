@@ -2,6 +2,10 @@
   <div class="funko">
     <div class="funko-content">
       <h3><a href="{{pathFor 'funkoPage'}}" class="discuss btn btn-default">{{collection}} - {{number}}</a> <span>{{name}}</span></h3>
+      <p>
+        submitted by {{author}}
+        {{#if ownFunko}}<a href="{{pathFor 'funkoEdit'}}">Edit</a>{{/if}}
+      </p>
     </div>
   </div>
 </template>
