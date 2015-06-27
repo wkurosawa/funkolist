@@ -1,0 +1,13 @@
+<template name="listsIndex">
+  <div class="lists">
+    {{#each lists}}
+      <p>
+        <a href="{{ pathFor 'listPage' }}">List: {{ name }}</a>
+      </p>
+    {{/each}}
+  </div>
+
+  <p>
+    <a href="{{ pathFor 'listNew' }}">Create a new list</a>
+  </p>
+</template>

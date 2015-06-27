@@ -1,9 +1,9 @@
 <template name="funkoItem">
   <div class="funko">
     <div class="funko-content">
-      <h3><a href="{{pathFor 'funkoPage'}}" class="discuss btn btn-default">{{collection}} - {{number}}</a> <span>{{name}}</span></h3>
+      <a href="#" class="add-wish btn btn-default">⬆ Wishes</a>
+      <a href="{{pathFor 'funkoPage'}}">{{collection}} - {{number}}: <span>{{name}}</span></a>
       <p>
-        submitted by {{author}}
         {{#if ownFunko}}<a href="{{pathFor 'funkoEdit'}}">Edit</a>{{/if}}
       </p>
     </div>
