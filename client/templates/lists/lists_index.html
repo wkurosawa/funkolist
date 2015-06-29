@@ -2,12 +2,8 @@
   <div class="lists">
     {{#each lists}}
       <p>
-        <a href="{{ pathFor 'listPage' }}">List: {{ name }}</a>
+        <a href="{{ pathFor slug }}">{{ name }}</a>
       </p>
     {{/each}}
   </div>
-
-  <p>
-    <a href="{{ pathFor 'listNew' }}">Create a new list</a>
-  </p>
 </template>

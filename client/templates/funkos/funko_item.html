@@ -1,7 +1,12 @@
 <template name="funkoItem">
   <div class="funko">
     <div class="funko-content">
-      <a href="#" class="add-wish btn btn-default">⬆ Wishes</a>
+      {{ #unless isOnWishlist }}
+        <a href="#" class="add-wish btn btn-default">⬆ Wishes</a>
+      {{ /unless }}
+      {{ #unless isOnMyFunkosList }}
+        <a href="#" class="add-my-funkos btn btn-default">⬆ My Funkos</a>
+      {{ /unless }}
       <a href="{{pathFor 'funkoPage'}}">{{collection}} - {{number}}: <span>{{name}}</span></a>
       <p>
         {{#if ownFunko}}<a href="{{pathFor 'funkoEdit'}}">Edit</a>{{/if}}
